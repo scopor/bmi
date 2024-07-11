@@ -1,4 +1,5 @@
 <template>
+  <SpeedInsights />
   <div class="container">
     <div class="bmi-calculator">
       <h1>BMI 计算器 - 在线计算您的体重指数</h1>
@@ -75,9 +76,11 @@
   </div>
 </template>
 
+<script setup lang="ts">
+import { SpeedInsights } from '@vercel/speed-insights/vue';
+</script>
+
 <script>
-import { SpeedInsights } from "@vercel/speed-insights/next"
-  
 export default {
   data() {
     return {

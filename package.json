@@ -6,6 +6,7 @@
     "build": "vite build"
   },
   "dependencies": {
+    "@vercel/speed-insights": "^1.0.12",
     "vue": "^3.0.4"
   },
   "devDependencies": {

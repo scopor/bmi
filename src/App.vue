@@ -23,7 +23,7 @@
       </div>
       <button @click="calculateBMI">计算 BMI</button>
       <p v-if="bmi !== 0" class="bmi-explanation">您的 BMI 值为: {{ bmi.toFixed(2) }}</p>
-      <div v-if="bmi !== 0" >
+      <div>
         <p class="bmi-explanation">{{ bmiExplanation }}</p>
       </div>
     </div>
@@ -95,17 +95,17 @@ const calculateBMI = () => {
   }
   if (bmi.value === 0) {
     bmiExplanation.value = "身高或体重异常，请重新输入。";
-  } else if (bmi > 0 && bmi < 18.5) {
+  } else if (bmi.value > 0 && bmi.value < 18.5) {
     bmiExplanation.value = "过轻，建议您适当增加营养摄入。";
-  } else if (bmi >= 18.5 && bmi < 24) {
+  } else if (bmi.value >= 18.5 && bmi.value < 24) {
     bmiExplanation.value = "正常，保持良好的生活习惯。";
-  } else if (bmi >= 24 && bmi < 27) {
+  } else if (bmi.value >= 24 && bmi.value < 27) {
     bmiExplanation.value = "偏重，建议您控制饮食并适当运动。";
-  } else if (bmi >= 27 && bmi < 30) {
+  } else if (bmi.value >= 27 && bmi.value < 30) {
     bmiExplanation.value = "轻度肥胖，建议您尽快采取措施控制体重。";
-  } else if (bmi >= 30 && bmi < 35) {
+  } else if (bmi.value >= 30 && bmi.value < 35) {
     bmiExplanation.value = "中度肥胖，建议您咨询医生寻求专业指导。";
-  } else if (bmi >= 35) {
+  } else if (bmi.value >= 35) {
     bmiExplanation.value = "重度肥胖，建议您尽快就医进行治疗。";
   }
 };

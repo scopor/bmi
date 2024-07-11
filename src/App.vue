@@ -22,8 +22,8 @@
         </div>
       </div>
       <button @click="calculateBMI">计算 BMI</button>
-      <p v-if="bmi !== null" class="bmi-explanation">您的 BMI 值为: {{ bmi.toFixed(2) }}</p>
-      <div v-if="bmi !== null" >
+      <p v-if="bmi !== 0" class="bmi-explanation">您的 BMI 值为: {{ bmi.toFixed(2) }}</p>
+      <div v-if="bmi !== 0" >
         <p class="bmi-explanation">{{ bmiExplanation }}</p>
       </div>
     </div>
@@ -73,36 +73,40 @@
       </p>
     </div>
   </div>
+  <SpeedInsights />
 </template>
 
 <script setup lang="ts">
+import { ref } from 'vue'; // 引入 ref
+import SpeedInsights from '@vercel/speed-insights';
 
 let weight = 70;
 let height = 175;
 let gender = "男";
-let bmi = null;
-let bmiExplanation = null;
+
+const bmi = ref(0);
+const bmiExplanation = ref("");
 
 const calculateBMI = () => {
   if (height === 0) {
-    bmi = 0;
+    bmi.value = 0;
   } else {
-    bmi = weight / (height * height / 10000);
+    bmi.value = weight / (height * height / 10000);
   }
-  if (bmi === 0) {
-    bmiExplanation = "身高或体重异常，请重新输入。";
+  if (bmi.value === 0) {
+    bmiExplanation.value = "身高或体重异常，请重新输入。";
   } else if (bmi > 0 && bmi < 18.5) {
-    bmiExplanation = "过轻，建议您适当增加营养摄入。";
+    bmiExplanation.value = "过轻，建议您适当增加营养摄入。";
   } else if (bmi >= 18.5 && bmi < 24) {
-    bmiExplanation = "正常，保持良好的生活习惯。";
+    bmiExplanation.value = "正常，保持良好的生活习惯。";
   } else if (bmi >= 24 && bmi < 27) {
-    bmiExplanation = "偏重，建议您控制饮食并适当运动。";
+    bmiExplanation.value = "偏重，建议您控制饮食并适当运动。";
   } else if (bmi >= 27 && bmi < 30) {
-    bmiExplanation = "轻度肥胖，建议您尽快采取措施控制体重。";
+    bmiExplanation.value = "轻度肥胖，建议您尽快采取措施控制体重。";
   } else if (bmi >= 30 && bmi < 35) {
-    bmiExplanation = "中度肥胖，建议您咨询医生寻求专业指导。";
+    bmiExplanation.value = "中度肥胖，建议您咨询医生寻求专业指导。";
   } else if (bmi >= 35) {
-    bmiExplanation = "重度肥胖，建议您尽快就医进行治疗。";
+    bmiExplanation.value = "重度肥胖，建议您尽快就医进行治疗。";
   }
 };
 </script>

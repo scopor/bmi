@@ -1,5 +1,4 @@
 <template>
-  <SpeedInsights />
   <div class="container">
     <div class="bmi-calculator">
       <h1>BMI 计算器 - 在线计算您的体重指数</h1>
@@ -74,45 +73,39 @@
       </p>
     </div>
   </div>
+  <SpeedInsights />
 </template>
 
 <script setup lang="ts">
 import { SpeedInsights } from '@vercel/speed-insights/vue';
 
-export default {
-  data() {
-    return {
-      weight: 70,
-      height: 175,
-      gender: "男",
-      bmi: null,
-      bmiExplanation: null,
-    };
-  },
-  methods: {
-    calculateBMI() {
-      if (this.height === 0) {
-        this.bmi = 0;
-      } else {
-        this.bmi = this.weight / (this.height * this.height / 10000);
-      }
-      if (this.bmi === 0) {
-        this.bmiExplanation = "身高或体重异常，请重新输入。";
-      } else if (this.bmi > 0 && this.bmi < 18.5) {
-        this.bmiExplanation = "过轻，建议您适当增加营养摄入。";
-      } else if (this.bmi >= 18.5 && this.bmi < 24) {
-        this.bmiExplanation = "正常，保持良好的生活习惯。";
-      } else if (this.bmi >= 24 && this.bmi < 27) {
-        this.bmiExplanation = "偏重，建议您控制饮食并适当运动。";
-      } else if (this.bmi >= 27 && this.bmi < 30) {
-        this.bmiExplanation = "轻度肥胖，建议您尽快采取措施控制体重。";
-      } else if (this.bmi >= 30 && this.bmi < 35) {
-        this.bmiExplanation = "中度肥胖，建议您咨询医生寻求专业指导。";
-      } else if (this.bmi >= 35) {
-        this.bmiExplanation = "重度肥胖，建议您尽快就医进行治疗。";
-      }
-    },
-  },
+let weight = 70;
+let height = 175;
+let gender = "男";
+let bmi = null;
+let bmiExplanation = null;
+
+const calculateBMI = () => {
+  if (height === 0) {
+    bmi = 0;
+  } else {
+    bmi = weight / (height * height / 10000);
+  }
+  if (bmi === 0) {
+    bmiExplanation = "身高或体重异常，请重新输入。";
+  } else if (bmi > 0 && bmi < 18.5) {
+    bmiExplanation = "过轻，建议您适当增加营养摄入。";
+  } else if (bmi >= 18.5 && bmi < 24) {
+    bmiExplanation = "正常，保持良好的生活习惯。";
+  } else if (bmi >= 24 && bmi < 27) {
+    bmiExplanation = "偏重，建议您控制饮食并适当运动。";
+  } else if (bmi >= 27 && bmi < 30) {
+    bmiExplanation = "轻度肥胖，建议您尽快采取措施控制体重。";
+  } else if (bmi >= 30 && bmi < 35) {
+    bmiExplanation = "中度肥胖，建议您咨询医生寻求专业指导。";
+  } else if (bmi >= 35) {
+    bmiExplanation = "重度肥胖，建议您尽快就医进行治疗。";
+  }
 };
 </script>
 

@@ -78,9 +78,7 @@
 
 <script setup lang="ts">
 import { SpeedInsights } from '@vercel/speed-insights/vue';
-</script>
 
-<script>
 export default {
   data() {
     return {

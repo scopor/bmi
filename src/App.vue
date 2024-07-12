@@ -73,12 +73,10 @@
       </p>
     </div>
   </div>
-  <SpeedInsights />
 </template>
 
 <script setup lang="ts">
 import { ref } from 'vue'; // 引入 ref
-import { SpeedInsights } from "@vercel/speed-insights/vue"
 
 let weight = 70;
 let height = 175;
